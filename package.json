@@ -1,0 +1,15 @@
+{
+  "name": "slack-message-release-action",
+  "version": "1.0.0",
+  "description": "A GitHub action to notify a release from a HISTORY.md file",
+  "main": "index.js",
+  "repository": "git@github.com:bloodyowl/slack-message-release-action.git",
+  "author": "Matthias Le Brun <bloodyowl@icloud.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0",
+    "@slack/webhook": "^6.0.0"
+  }
+}
