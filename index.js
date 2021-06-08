@@ -1,6 +1,7 @@
 let { IncomingWebhook } = require("@slack/webhook");
+let core = require("@actions/core");
 
-let webhook = new IncomingWebhook(process.env.SLACK_WEBHOOK_URL);
+let webhook = new IncomingWebhook(core.getInput("slack_webhook_url"));
 
 let [org, repository] = process.env.GITHUB_REPOSITORY.split("/");
 let version = core.getInput("version");

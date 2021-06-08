@@ -1,5 +1,5 @@
 name: 'Slack release message'
-description: 'Greet someone and record the time'
+description: 'A GitHub Action to push a slack webhook'
 inputs:
   version:
     description: 'The version you're releasing (e.g. v1.0.1, 1.0.1)'
@@ -7,6 +7,9 @@ inputs:
   changelog:
     description: 'The contents of your changelog file, each version needs to start with `## x.y.z`'
     required: false
+  slack_webhook_url:
+    description: 'Your slack webhook URL'
+    required: true
 runs:
   using: 'node14'
   main: 'index.js'
