@@ -1,6 +1,6 @@
 # Slack release message
 
-<img src="./icon.png" width="64" height="64" alt="" style="border-radius: 10px" />
+<img src="./icon-rounded.png" width="128" height="128" alt="" />
 
 > A GitHub Action to push a slack webhook
 
