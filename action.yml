@@ -1,13 +1,12 @@
 name: 'Slack release message'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  version:
+    description: 'The version you're releasing (e.g. v1.0.1, 1.0.1)'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  changelog:
+    description: 'The contents of your changelog file, each version needs to start with `## x.y.z`'
+    required: false
 runs:
-  using: 'node12'
+  using: 'node14'
   main: 'index.js'

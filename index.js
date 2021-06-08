@@ -2,11 +2,14 @@ let { IncomingWebhook } = require("@slack/webhook");
 
 let webhook = new IncomingWebhook(process.env.SLACK_WEBHOOK_URL);
 
-let repository = core.getInput("repository");
+let [org, repository] = process.env.GITHUB_REPOSITORY.split("/");
 let version = core.getInput("version");
 let changelog = core.getInput("changelog");
 
 function getChangelogForVersion(changelog, version) {
+  if (!changelog) {
+    return "No changelog provided";
+  }
   version = version.startsWith("v") ? version.slice(1) : version;
   let startText = `## ${version}\n`;
   let start = changelog.indexOf(startText);
