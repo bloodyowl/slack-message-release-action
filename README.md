@@ -1,5 +1,7 @@
 # Slack release message
 
+<img src="./icon.png" width="64" height="64" alt="" style="border-radius: 10px" />
+
 > A GitHub Action to push a slack webhook
 
 ## Inputs
@@ -12,7 +14,7 @@ The version you're releasing (e.g. v1.0.1, 1.0.1)
 
 _Optional_, the contents of your changelog file.
 
-Each version needs to start with `## x.y.z`'
+Each version needs to start with `## x.y.z`
 
 ### slack_webhook_url
 
