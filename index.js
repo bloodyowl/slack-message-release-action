@@ -1,33 +1,17 @@
-let { IncomingWebhook } = require("@slack/webhook");
 let core = require("@actions/core");
+let slackMessageRelease = require("./slackMessageRelease.js");
 
-let webhook = new IncomingWebhook(core.getInput("slack_webhook_url"));
-
-let [org, repository] = process.env.GITHUB_REPOSITORY.split("/");
-let version = core.getInput("version");
-let changelog = core.getInput("changelog");
-
-function getChangelogForVersion(changelog, version) {
-  if (!changelog) {
-    return "No changelog provided";
-  }
-  version = version.startsWith("v") ? version.slice(1) : version;
-  let startText = `## ${version}\n`;
-  let start = changelog.indexOf(startText);
-  if (start == -1) {
-    return "No changelog found";
-  }
-  let end = changelog.indexOf("\n##", start + startText.length);
-  return changelog.slice(start + startText.length, end - start).trim();
+try {
+  await slackMessageRelease({
+    githubRepository: process.env.GITHUB_REPOSITORY,
+    version: core.getInput("version"),
+    changelog: core.getInput("changelog"),
+    githubRunId: process.env.GITHUB_RUN_ID,
+    slackWebhookUrl: core.getInput("slack_webhook_url"),
+  });
+  console.log("Message successfully sent 💬");
+} catch (err) {
+  console.error("The following error occured");
+  console.error(err);
+  process.exit(1);
 }
-
-let formattedChangelog = getChangelogForVersion(changelog, version)
-  .split("\n")
-  .map((item) => `> ${item}`)
-  .join("\n");
-
-await webhook.send({
-  text: `${repository} ${version} has been [released](https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}) ✨
-
-${formattedChangelog}`,
-});
