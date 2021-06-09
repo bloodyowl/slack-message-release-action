@@ -23,7 +23,7 @@ Your slack webhook URL
 ## Example
 
 ```
-uses: bloodyowl/slack-message-release-action@v1.1.4
+uses: bloodyowl/slack-message-release-action@v1.1.5
 with:
   version: ${GITHUB_REF#refs/tags/}
   changelog: ${cat HISTORY.md}
