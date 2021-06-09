@@ -1,5 +1,7 @@
 name: 'Slack release message'
 description: 'A GitHub Action to push a slack webhook'
+icon: 'message-circle'
+color: 'gray-dark'
 inputs:
   version:
     description: "The version you're releasing (e.g. v1.0.1, 1.0.1)"
