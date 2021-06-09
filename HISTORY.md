@@ -1,3 +1,9 @@
+## 1.1.1
+
+Changes:
+
+- Check node_modules in (6653678)
+
 ## 1.1.0
 
 Changes:
