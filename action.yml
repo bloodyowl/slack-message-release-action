@@ -2,7 +2,7 @@ name: 'Slack release message'
 description: 'A GitHub Action to push a slack webhook'
 inputs:
   version:
-    description: 'The version you're releasing (e.g. v1.0.1, 1.0.1)'
+    description: "The version you're releasing (e.g. v1.0.1, 1.0.1)"
     required: true
   changelog:
     description: 'The contents of your changelog file, each version needs to start with `## x.y.z`'
