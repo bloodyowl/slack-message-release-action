@@ -1,3 +1,9 @@
+## 1.1.3
+
+Changes:
+
+- Customize icon (daac35f)
+
 ## 1.1.2
 
 Fixes:
