@@ -1,3 +1,9 @@
+## 1.1.5
+
+Changes:
+
+- Only supports node12 (d135e92)
+
 ## 1.1.4
 
 Changes:
