@@ -1,3 +1,9 @@
+## 1.1.2
+
+Fixes:
+
+- Fix issue in yaml (f7078e2)
+
 ## 1.1.1
 
 Changes:
