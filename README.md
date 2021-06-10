@@ -25,7 +25,14 @@ Your slack webhook URL
 ```yaml
 - name: Get changelog
   id: changelog
-  run: echo "::set-output name=changelog::$(cat HISTORY.md)"
+  shell: bash
+  # trick for multiline variables
+  run: |
+    changelog=$(head -100 HISTORY.md)
+    changelog="${changelog//'%'/'%25'}"
+    changelog="${changelog//$'\n'/'%0A'}"
+    changelog="${changelog//$'\r'/'%0D'}"
+    echo "::set-output name=changelog::$changelog"
 
 - name: Get version
   id: version
