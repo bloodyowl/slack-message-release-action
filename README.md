@@ -22,10 +22,19 @@ Your slack webhook URL
 
 ## Example
 
-```
-uses: bloodyowl/slack-message-release-action@v1.1.5
-with:
-  version: ${GITHUB_REF#refs/tags/}
-  changelog: ${cat HISTORY.md}
-  slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+```yaml
+- name: Get changelog
+  id: changelog
+  run: echo "::set-output name=changelog::$(cat HISTORY.md)"
+
+- name: Get version
+  id: version
+  run: echo "::set-output name=version::${GITHUB_REF#refs/tags/}"
+
+- name: Notify on Slack
+  uses: bloodyowl/slack-message-release-action@v1.1.5
+  with:
+    version: ${{ steps.version.outputs.version }}
+    changelog: ${{ steps.changelog.outputs.changelog }}
+    slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
 ```
