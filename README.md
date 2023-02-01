@@ -40,15 +40,13 @@ Your slack webhook URL
   shell: bash
   # trick for multiline variables
   run: |
-    changelog=$(head -100 HISTORY.md)
-    changelog="${changelog//'%'/'%25'}"
-    changelog="${changelog//$'\n'/'%0A'}"
-    changelog="${changelog//$'\r'/'%0D'}"
-    echo "::set-output name=changelog::$changelog"
+    echo "changelog<<EOF" >> $GITHUB_OUTPUT
+    echo "$(head -100 HISTORY.md)" >> $GITHUB_OUTPUT
+    echo "EOF" >> $GITHUB_OUTPUT
 
 - name: Get version
   id: version
-  run: echo "::set-output name=version::${GITHUB_REF#refs/tags/}"
+  run: echo "version=${{ github.ref_name }}" >> $GITHUB_OUTPUT
 
 - name: Notify on Slack
   uses: bloodyowl/slack-message-release-action@v1.1.5
