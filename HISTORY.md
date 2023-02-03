@@ -1,3 +1,9 @@
+## 1.2.0
+
+Changes:
+
+- Update node (b3154fe)
+
 ## 1.1.5
 
 Changes:
