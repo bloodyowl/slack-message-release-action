@@ -6,6 +6,7 @@ async function slackMessageRelease({
   version,
   changelog,
   slackWebhookUrl,
+  environment,
 }) {
   let webhook = new IncomingWebhook(slackWebhookUrl);
 
@@ -27,7 +28,9 @@ async function slackMessageRelease({
 
   await webhook.send({
     mrkdwn: true,
-    text: `*${repository} ${version}* has been <https://github.com/${githubRepository}/actions/runs/${githubRunId}|released> ✨
+    text: `*${repository} ${version}* has been <https://github.com/${githubRepository}/actions/runs/${githubRunId}|released>${
+      environment != null ? ` on ${environment}` : ``
+    } ✨
 ${getChangelogForVersion(changelog, version)
   .split("\n")
   .map((x) => `> ${x.replace(/^-/, "•")}`)

@@ -4,6 +4,7 @@ let slackMessageRelease = require("./slackMessageRelease.js");
 slackMessageRelease({
   githubRepository: process.env.GITHUB_REPOSITORY,
   version: core.getInput("version"),
+  environment: core.getInput("environment"),
   changelog: core.getInput("changelog"),
   githubRunId: process.env.GITHUB_RUN_ID,
   slackWebhookUrl: core.getInput("slack_webhook_url"),
